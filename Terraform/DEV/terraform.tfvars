@@ -1,7 +1,7 @@
-resource_group_name = "BC_rg"
+resource_group_name = "panini_rg"
 location            = "WestEurope"
-cluster_name        = "BCacr-001-DEV"
+cluster_name        = "panini-cluster-001-dev"
 kubernetes_version  = "1.26"
 system_node_count   = 2
-acr_name            = "BCacr001DEV"
+acr_name            = "panini-acr-001-dev"
 apim_name = "panini-apim-001-dev"
