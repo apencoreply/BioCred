@@ -45,3 +45,13 @@ resource "azurerm_kubernetes_cluster" "aks" {
     network_plugin    = "kubenet" 
   }
 }
+
+resource "azurerm_api_management" "apim" {
+  name                = var.apim_name
+  location            = azurerm_resource_group.aks-rg.location
+  resource_group_name = azurerm_resource_group.aks-rg.name
+  publisher_name      = "My Company"
+  publisher_email     = "company@terraform.io"
+
+  sku_name = "Developer_1"
+}

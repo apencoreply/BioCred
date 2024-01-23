@@ -22,3 +22,7 @@ variable "acr_name" {
   type        = string
   description = "ACR name"
 }
+variable "apim_name" {
+  type        = string
+  description = "APIM name"
+}
