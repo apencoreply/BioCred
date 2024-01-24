@@ -32,7 +32,7 @@ resource "azurerm_kubernetes_cluster" "aks" {
     node_count          = var.system_node_count
     vm_size             = "Standard_DS2_v2"
     type                = "VirtualMachineScaleSets"
-    zones  = ["1", "2", "3"]
+    zones               = ["1", "2", "3"]
     enable_auto_scaling = false
   }
 
@@ -44,4 +44,14 @@ resource "azurerm_kubernetes_cluster" "aks" {
     load_balancer_sku = "standard"
     network_plugin    = "kubenet" 
   }
+}
+
+resource "azurerm_api_management" "apim" {
+  name                = var.apim_name
+  location            = azurerm_resource_group.aks-rg.location
+  resource_group_name = azurerm_resource_group.aks-rg.name
+  publisher_name      = "My Company"
+  publisher_email     = "company@terraform.io"
+
+  sku_name = "Developer_1"
 }
