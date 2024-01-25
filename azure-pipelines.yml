@@ -1,24 +1,42 @@
-trigger:  
-- main  
-  
-pool:  
-  vmImage: 'ubuntu-latest'  
-  
-steps:  
-- task: TerraformTaskV4@4
+trigger:
+- none
+
+pool:
+  vmImage: 'ubuntu-latest'
+
+variables:  
+  defaultWorkingDirectory: '$(System.DefaultWorkingDirectory)/Terraform/DEV'
+
+steps:
+
+- task: AzureCLI@2
   inputs:
-    provider: 'azurerm'
-    command: 'init'
-    workingDirectory: '$(System.DefaultWorkingDirectory)/Terraform/DEV'
-    environmentServiceNameAzureRM: 'Sottoscrizione Penco(3d600cb7-0544-4631-9116-27e1e1f3343f)'
-    backendAzureRmContainerName: 'terraformstate'  
-    backendAzureRmKey: 'terraform.tfstate'  
-    # backendAzureRmResourceGroupName: 
-    # backendAzureRmStorageAccountName: 
-- task: TerraformTaskV4@4
+    azureSubscription: 'Sottoscrizione Penco(3d600cb7-0544-4631-9116-27e1e1f3343f)'
+    scriptType: 'bash'
+    scriptLocation: 'inlineScript'
+    inlineScript: 'terraform init'
+    workingDirectory: $(defaultWorkingDirectory)  
+
+- task: AzureCLI@2
   inputs:
-    provider: 'azurerm'
-    command: 'apply'
-    workingDirectory: '$(System.DefaultWorkingDirectory)/Terraform/DEV'  
-    commandOptions: '-auto-approve'
-    environmentServiceNameAzureRM: 'Sottoscrizione Penco(3d600cb7-0544-4631-9116-27e1e1f3343f)'
+    azureSubscription: 'Sottoscrizione Penco(3d600cb7-0544-4631-9116-27e1e1f3343f)'
+    scriptType: 'bash'
+    scriptLocation: 'inlineScript'
+    inlineScript: 'terraform validate'
+    workingDirectory: $(defaultWorkingDirectory)  
+
+- task: AzureCLI@2
+  inputs:
+    azureSubscription: 'Sottoscrizione Penco(3d600cb7-0544-4631-9116-27e1e1f3343f)'
+    scriptType: 'bash'
+    scriptLocation: 'inlineScript'
+    inlineScript: 'terraform plan'
+    workingDirectory: $(defaultWorkingDirectory)  
+
+- task: AzureCLI@2
+  inputs:
+    azureSubscription: 'Sottoscrizione Penco(3d600cb7-0544-4631-9116-27e1e1f3343f)'
+    scriptType: 'bash'
+    scriptLocation: 'inlineScript'
+    inlineScript: 'terraform apply -auto-approve'
+    workingDirectory: $(defaultWorkingDirectory)  
