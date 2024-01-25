@@ -5,27 +5,8 @@ pool:
   vmImage: 'ubuntu-latest'  
   
 steps:  
-- task: ms-devlabs.custom-terraform-tasks.custom-terraform-release-task.TerraformInstaller@0  
-  inputs:  
-    terraformVersion: '0.15.3'  
-  
-- task: ms-devlabs.custom-terraform-tasks.custom-terraform-release-task.TerraformTaskV1@0  
-  inputs:  
-    provider: 'azurerm'  
-    command: 'init'  
-    workingDirectory: '$(System.DefaultWorkingDirectory)'  
-  
-- task: ms-devlabs.custom-terraform-tasks.custom-terraform-release-task.TerraformTaskV1@0  
-  inputs:  
-    provider: 'azurerm'  
-    command: 'plan'  
-    workingDirectory: '$(System.DefaultWorkingDirectory)'  
-    environmentServiceNameAzureRM: 'your-service-connection-name'  
-  
-- task: ms-devlabs.custom-terraform-tasks.custom-terraform-release-task.TerraformTaskV1@0  
-  inputs:  
-    provider: 'azurerm'  
-    command: 'apply'  
-    workingDirectory: '$(System.DefaultWorkingDirectory)'  
-    environmentServiceNameAzureRM: 'your-service-connection-name'  
-    commandOptions: '-auto-approve'  
+- task: TerraformTaskV4@4
+  inputs:
+    provider: 'azurerm'
+    command: 'init'
+    workingDirectory: '$(System.DefaultWorkingDirectory)/Terraform/DEV'
