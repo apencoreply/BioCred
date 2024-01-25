@@ -6,17 +6,17 @@ pool:
 
 variables:  
   defaultWorkingDirectory: '$(System.DefaultWorkingDirectory)/Terraform/DEV'
-  clientId: 'your-client-id'  
-  clientSecret: 'your-client-secret'  
-  tenantId: 'your-tenant-id'  
+  # clientId: 'your-client-id'  
+  # clientSecret: 'your-client-secret'  
+  # tenantId: 'your-tenant-id'  
 
 steps:
-- task: AzureCLI@2
-  inputs:
-    azureSubscription: 'Sottoscrizione Penco(3d600cb7-0544-4631-9116-27e1e1f3343f)'
-    scriptType: 'bash'
-    scriptLocation: 'inlineScript'
-    inlineScript: 'az login --service-principal -u $(clientId) -p $(clientSecret) --tenant $(tenantId)'
+# - task: AzureCLI@2
+#   inputs:
+#     azureSubscription: 'Sottoscrizione Penco(3d600cb7-0544-4631-9116-27e1e1f3343f)'
+#     scriptType: 'bash'
+#     scriptLocation: 'inlineScript'
+#     inlineScript: 'az login --service-principal -u $(clientId) -p $(clientSecret) --tenant $(tenantId)'
 
 - task: AzureCLI@2
   inputs:
