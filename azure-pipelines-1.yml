@@ -34,18 +34,18 @@ steps:
     inlineScript: 'terraform validate'
     workingDirectory: $(defaultWorkingDirectory)  
 
-- task: AzureCLI@2
-  inputs:
-    azureSubscription: 'Sottoscrizione Penco(3d600cb7-0544-4631-9116-27e1e1f3343f)'
-    scriptType: 'bash'
-    scriptLocation: 'inlineScript'
-    inlineScript: 'terraform plan'
-    workingDirectory: $(defaultWorkingDirectory)  
+# - task: AzureCLI@2
+#   inputs:
+#     azureSubscription: 'Sottoscrizione Penco(3d600cb7-0544-4631-9116-27e1e1f3343f)'
+#     scriptType: 'bash'
+#     scriptLocation: 'inlineScript'
+#     inlineScript: 'terraform plan'
+#     workingDirectory: $(defaultWorkingDirectory)  
 
-- task: AzureCLI@2
-  inputs:
-    azureSubscription: 'Sottoscrizione Penco(3d600cb7-0544-4631-9116-27e1e1f3343f)'
-    scriptType: 'bash'
-    scriptLocation: 'inlineScript'
-    inlineScript: 'terraform apply -auto-approve'
-    workingDirectory: $(defaultWorkingDirectory)  
+# - task: AzureCLI@2
+#   inputs:
+#     azureSubscription: 'Sottoscrizione Penco(3d600cb7-0544-4631-9116-27e1e1f3343f)'
+#     scriptType: 'bash'
+#     scriptLocation: 'inlineScript'
+#     inlineScript: 'terraform apply -auto-approve'
+#     workingDirectory: $(defaultWorkingDirectory)  
